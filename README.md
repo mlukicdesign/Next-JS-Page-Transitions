@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Next JS Page Transistion Animation
+
+Basic boilerplate code to get started and experiment with page transitions in Next JS & Framer Motion. Expand with GSAP or other animation libraries to create more complex animations.
 
 ## Getting Started
 
-First, run the development server:
+- Clone the repo
+- Run `npm install`
+- Run `npm run dev` to preview build
+- Adjust animation with the Motion div in `pages/index.js` to your liking. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Information
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The App component takes two props, Component and pageProps.
+Inside the component, the useRouter hook is used to access the Next.js router.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+motion.div for Page Transition:
 
-## Learn More
+The main content of the page is wrapped in a motion.div.
+The key attribute is set to router.pathname to trigger a re-render when the route changes.
+The Component (presumably the page content) is rendered inside this motion.div.
 
-To learn more about Next.js, take a look at the following resources:
+#### Entry and Exit Animations:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Two motion.div elements are used for entry and exit animations.
+The first motion.div with the class "slide-in" is initially hidden (scaleY:0), then animates to a fully visible state (scaleY:1) on exit.
+The second motion.div with the class "slide-out" is initially fully visible (scaleY:1), then animates to be hidden (scaleY:0) on exit.
+Both animations have a duration of 1 second and use a custom ease function ([0.22, 1, 0.36, 1]).
+AnimatePresence Component:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The outermost AnimatePresence component is used to manage the presence of its children, enabling enter and exit animations.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
